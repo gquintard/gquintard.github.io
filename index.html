@@ -16,9 +16,9 @@ body {
 	overflow:hidden;*/
 }
 * {
-	   -moz-transition: max-height 1s ease-in-out, box-shadow 0.6s;
+/*	   -moz-transition: max-height 1s ease-in-out, box-shadow 0.6s;
 	-webkit-transition: max-height 1s ease-in-out, box-shadow 0.6s;
-	        transition: max-height 1s ease-in-out, box-shadow 0.6s;
+	        transition: max-height 1s ease-in-out, box-shadow 0.6s;*/
 	overflow:visible;
 }
 div {
@@ -38,7 +38,6 @@ div.show {
 #maxi.orange>#entry-orange{display:block;}
 #maxi.verte>#entry-verte{display:block;}
 #maxi.bleue>#entry-bleue{display:block;}
-#maxi.marron>#entry-marron{display:block;}
 
 #entry-sommaire{text-align: center}
 #entry-sommaire>*{display:none}
@@ -49,19 +48,19 @@ div.show {
 .orange h1, #bouton-orange {background: #fc3;}
 .verte h1, #bouton-verte  {background: #3c3;}
 .bleue h1, #bouton-bleue  {background: #ccf;}
-.marron h1, #bouton-marron  {background: #B05F3C;}
 #bouton-retour {background: #ccc;}
 
 .jaune h1, #bouton-jaune,
 .orange h1, #bouton-orange,
 .verte h1, #bouton-verte,
 .bleue h1, #bouton-bleue,
-.marron h1, #bouton-marron,
 #bouton-retour {
 	box-shadow: inset -2px -2px 10px 2px rgba(50, 50, 50, 0.25);
 }
 
 h1{
+	text-align: center;
+	font-size: 1.3em;
 	display:block;
 	margin: 1em 0 0 0;
 	text-decoration:none;
@@ -69,6 +68,7 @@ h1{
 	border-radius:4px;
 	padding:10px;
 }
+h2 {font-size:1.1em;}
 
 ol>li {
 	list-style-type:decimal;
@@ -97,11 +97,20 @@ function changepage(id) {
 	document.getElementById("maxi").className = id;
 	document.getElementById("entry-sommaire").className = id;
 }
+var vmem = null;
 function toggle(id) {
+
 	if (document.getElementById(id).className == "show") {
 		document.getElementById(id).className = "hide";
+		vmem = null;
 	} else {
-		document.getElementById(id).className = "show";
+		if (vmem != null) {
+			vmem.className = "hide";
+		}
+		vmem = document.getElementById(id);
+		vmem.className = "show";
+		location.href = "#";
+		location.href = "#"+id.replace("move-body-","move-head-");
 	}
   }
 function rewritetree() {
@@ -123,26 +132,10 @@ function rewritetree() {
 
 
 <div id='entry-jaune'>
-<div id='move-head-chutes' onclick="toggle('move-body-chutes');"></div>
-<div id='move-body-chutes' onclick="toggle('move-body-chutes');" class='hide'>
-<h1 id="chutes">Chutes</h1>
-<h2 id="liste">Liste</h2>
-<ul>
-<li>Chute avant amortie sur les mains</li>
-<li>Chute arrière</li>
-<li>Chute sur le coté</li>
-</ul>
-<h2 id="précision">Précision</h2>
-<ul>
-<li>On essaie de tomber le plus verticalement possible, et non de tout son long</li>
-<li>Pour la chute avant, tourner la tête sur le coté</li>
-<li>Sur les deux dernières chutes, frappes des avant-bras (45⁰ par rapport au buste) et retour des bras en croix devant le visage</li>
-</ul>
-</div>
 <div id='move-head-coups-de-coude' onclick="toggle('move-body-coups-de-coude');"></div>
 <div id='move-body-coups-de-coude' onclick="toggle('move-body-coups-de-coude');" class='hide'>
-<h1 id="coups-de-coude">Coups de coude</h1>
-<h2 id="liste">Liste</h2>
+<h1>Coups de coude</h1>
+<h2>Liste</h2>
 <ul>
 <li>Circulaire visage</li>
 <li>Circulaire coté opposé</li>
@@ -151,146 +144,280 @@ function rewritetree() {
 <li>Uppercut arrière</li>
 <li>Descente du coude</li>
 </ul>
-<h2 id="précisions">Précisions</h2>
+<h2>Précisions</h2>
 <ul>
 <li>Ces coups peuvent servir pendant une suite, par exemple après un <a href="#etranglement-avant-statique">etranglement avant statique</a></li>
 <li>La portée est très courte, mais attention à ne pas se pencher (déséquilibre, exposition, etc.)</li>
+</ul></div>
+<div id='move-head-roulade-avant' onclick="toggle('move-body-roulade-avant');"></div>
+<div id='move-body-roulade-avant' onclick="toggle('move-body-roulade-avant');" class='hide'>
+<h1>Roulade avant</h1>
+<h2>Technique</h2>
+<ol>
+<li>
+<ul>
+<li>En garde.</li>
+<li>Tête tournée vers l'épaule arrière</li>
+<li>Avant-bras avant horizontal, main ouverte, paume vers le bas, la main arrière vient former un angle droit avec la main avant</li>
 </ul>
-</div>
+</li>
+<li>
+<ul>
+<li>Descente sur les appuis, les deux mains en amorti au sol</li>
+<li>Talon arrière à la fesse, genou vers l'extérieur</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Poussée des jambes jusqu'à toucher le coude avant puis l'épaule avant</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Roulade, de l'épaule avant jusqu'à la hanche opposée</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Arrivée avec, au sol : genou arrière, pointe du pied arrière, et pied avant à plat</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Retour en garde avec rotation pour etre face à son point de départ</li>
+</ul>
+</li>
+</ol>
+<h2>Précisions</h2>
+<ul>
+<li>On n'utilise pas les mains pour se relever</li>
+<li>On peut commencer le genou arrière au sol, tourné vers l'extérieur</li>
+</ul></div>
 <div id='move-head-etranglement-avant-statique' onclick="toggle('move-body-etranglement-avant-statique');"></div>
 <div id='move-body-etranglement-avant-statique' onclick="toggle('move-body-etranglement-avant-statique');" class='hide'>
-<h1 id="étranglement-avant-statique">Étranglement avant statique</h1>
-<h2 id="technique">Technique</h2>
-<ol style="list-style-type: decimal">
-<li><ul>
+<h1>Étranglement avant statique</h1>
+<h2>Technique</h2>
+<ol>
+<li>
+<ul>
 <li>Crochetage des deux mains</li>
 <li>Coup de genou, voire tibia, ou pied, suivant la position de l'agresseur</li>
-</ul></li>
+</ul>
+</li>
 </ol>
-<h2 id="précisions">Précisions</h2>
+<h2>Précisions</h2>
 <ul>
 <li>Crochetage avec mains en becs de canne, sur les poignets/bases des pouces, en diagonale vers le bas</li>
 <li>Ne pas saisir pendant le crochetage</li>
 <li>Le crochetage doit être explosif pour être efficace</li>
 <li>Bien engager la hanche sur le coup de genou</li>
-</ul>
-</div>
-<div id='move-head-garde' onclick="toggle('move-body-garde');"></div>
-<div id='move-body-garde' onclick="toggle('move-body-garde');" class='hide'>
-<h1 id="garde-et-déplacements">Garde et déplacements</h1>
-<h2 id="technique">Technique</h2>
-<ul>
-<li>Position neute, pieds écartés d'un largeur d'épaules puis petit pas vers l'avant</li>
-<li>Talon arrière décollé, pointe vers l'avant</li>
-<li>Point du pied avant légèrement vers l'intérieur</li>
-<li>Bassin tourné légèrement vers l'intérieur</li>
-<li>Mains à hauteur des yeux, à 15-20cm du visage, en gardant une main avant et une main arrière</li>
-<li>Mains ouvertes, pouces repliés</li>
-<li>Coudes au corps</li>
-</ul>
-<h2 id="précisions">Précisions</h2>
-<ul>
-<li>Pour le déplacement: petits pas, sans laisser trainer le pied arrière, en commençant par le pied le plus proche de la destination</li>
-</ul>
-</div>
+</ul></div>
 <div id='move-head-prise-cou-cote' onclick="toggle('move-body-prise-cou-cote');"></div>
 <div id='move-body-prise-cou-cote' onclick="toggle('move-body-prise-cou-cote');" class='hide'>
-<h1 id="défense-contre-prise-de-cou-de-coté">Défense contre prise de cou de coté</h1>
-<h2 id="technique">Technique</h2>
-<ol style="list-style-type: decimal">
-<li><ul>
+<h1>Défense contre prise de cou de coté</h1>
+<h2>Technique</h2>
+<ol>
+<li>
+<ul>
 <li>Rétablissement des appuis en pivotant et en amenant le pied extérieur devant</li>
 <li>Frappe aux parties de la main extérieure</li>
 <li>Placement de la main intérieur sur le visage de l'agresseur. Pouce sous la machoire, les autre doigts en pression sur l'oeil, ou sous l'arête du nez</li>
-</ul></li>
-<li><ul>
+</ul>
+</li>
+<li>
+<ul>
 <li>Basculement de la tête vers l'arrière</li>
-</ul></li>
-<li><ul>
+</ul>
+</li>
+<li>
+<ul>
 <li>Pression vers le bas pour amener l'adversaire au sol</li>
-</ul></li>
+</ul>
+</li>
 </ol>
-<h2 id="attaque">Attaque</h2>
+<h2>Attaque</h2>
 <ul>
 <li>Le but de l'attaque est l'immobilisation, voire l'amenée au sol</li>
 <li>L'agresseur doit passer son épaule intérieure devant, avec volonté de déséquilibrer</li>
 </ul>
-<h2 id="précisions">Précisions</h2>
+<h2>Précisions</h2>
 <ul>
 <li>La frappe au partie est silmultanée avec le placement de la main au visage. Si elle le précède, l'attaquant risque de se baisser, et donc de se dérober</li>
 <li>La pression se fait bien vers le bas et non vers l'arrière.</li>
 <li>Pendant l'amenée au sol, on se s'occupe pas du bras, si l'adversaire résiste : frappe au plexus ou au visage</li>
-</ul>
-</div>
+</ul></div>
 <div id='move-head-roulade-arriere' onclick="toggle('move-body-roulade-arriere');"></div>
 <div id='move-body-roulade-arriere' onclick="toggle('move-body-roulade-arriere');" class='hide'>
-<h1 id="roulade-arrière">Roulade arrière</h1>
-<h2 id="technique">Technique</h2>
-<ol style="list-style-type: decimal">
-<li><ul>
+<h1>Roulade arrière</h1>
+<h2>Technique</h2>
+<ol>
+<li>
+<ul>
 <li>Les deux mains sur l'épaule qui roule, dos des mains contre le corps</li>
 <li>Tête penchée sur l'épaule opposée, en regardant ses mains</li>
-</ul></li>
-<li><ul>
-<li>Amorti en &quot;<em>s'asseyant</em>&quot;</li>
-</ul></li>
-<li><ul>
+</ul>
+</li>
+<li>
+<ul>
+<li>Amorti en "<em>s'asseyant</em>"</li>
+</ul>
+</li>
+<li>
+<ul>
 <li>Amenée des genoux fléchis par dessus les deux mains</li>
-</ul></li>
-<li><ul>
+</ul>
+</li>
+<li>
+<ul>
 <li>Extensions des jambes vers l'arrière et aterrissage sur la pointes des pieds</li>
-</ul></li>
-<li><ul>
+</ul>
+</li>
+<li>
+<ul>
 <li>Poussée des bras pour remonter et se mettre en garde</li>
-</ul></li>
+</ul>
+</li>
 </ol>
-<h2 id="précisions">Précisions</h2>
+<h2>Précisions</h2>
 <ul>
 <li>Il faut essayer de s'asseoir droit</li>
 <li>Ne pas décoller les mains de l'épaule</li>
 <li>Les genoux ne touchent pas le sol</li>
 <li>On peut commencer assis pour s'entrainer</li>
-</ul>
-</div>
-<div id='move-head-roulade-avant' onclick="toggle('move-body-roulade-avant');"></div>
-<div id='move-body-roulade-avant' onclick="toggle('move-body-roulade-avant');" class='hide'>
-<h1 id="roulade-avant">Roulade avant</h1>
-<h2 id="technique">Technique</h2>
-<ol style="list-style-type: decimal">
-<li><ul>
-<li>En garde.</li>
-<li>Tête tournée vers l'épaule arrière</li>
-<li>Avant-bras avant horizontal, main ouverte, paume vers le bas, la main arrière vient former un angle droit avec la main avant</li>
-</ul></li>
-<li><ul>
-<li>Descente sur les appuis, les deux mains en amorti au sol</li>
-<li>Talon arrière à la fesse, genou vers l'extérieur</li>
-</ul></li>
-<li><ul>
-<li>Poussée des jambes jusqu'à toucher le coude avant puis l'épaule avant</li>
-</ul></li>
-<li><ul>
-<li>Roulade, de l'épaule avant jusqu'à la hanche opposée</li>
-</ul></li>
-<li><ul>
-<li>Arrivée avec, au sol : genou arrière, pointe du pied arrière, et pied avant à plat</li>
-</ul></li>
-<li><ul>
-<li>Retour en garde avec rotation pour etre face à son point de départ</li>
-</ul></li>
-</ol>
-<h2 id="précisions">Précisions</h2>
-<ul>
-<li>On n'utilise pas les mains pour se relever</li>
-<li>On peut commencer le genou arrière au sol, tourné vers l'extérieur</li>
-</ul>
-</div>
+</ul></div>
 </div>
 <div id='entry-orange'>
+<div id='move-head-etranglement-arriere-pousse' onclick="toggle('move-body-etranglement-arriere-pousse');"></div>
+<div id='move-body-etranglement-arriere-pousse' onclick="toggle('move-body-etranglement-arriere-pousse');" class='hide'>
+<h1>Étranglement arrière poussé</h1>
+<h2>Technique</h2>
+<ol>
+<li>
+<ul>
+<li>Reprise des appuis en avançant un pied et se mettant de profil</li>
+<li>Montée de l'épaule arrière à l'oreille pour avoir un début de clef de poignet</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Coup de poing marteau dans les flancs de la main arrière</li>
+</ul>
+</li>
+</ol>
+<h2>Précisions</h2>
+<ul>
+<li>Dans le premier temps, attention à ne pas présenter son dos.</li>
+<li>C'est l'épaule qui monte à l'oreille, la tête reste droite</li>
+</ul>
+<h2>Sécurité</h2>
+<ul>
+<li>Attention à la clef</li>
+</ul></div>
+<div id='move-head-defense-contre-poing-cote' onclick="toggle('move-body-defense-contre-poing-cote');"></div>
+<div id='move-body-defense-contre-poing-cote' onclick="toggle('move-body-defense-contre-poing-cote');" class='hide'>
+<h1>Défense contre coup de poing de coté (attaque bras extérieur)</h1>
+<h2>Technique</h2>
+<ol start="0">
+<li>
+<ul>
+<li>Départ en position neutre</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Parade du bras le plus proche, avant-bras à la verticale, avec au choix :
+        - tranchant l'extérieur
+        - dos de la main à l'extérieur
+        - pouce à l'extérieur</li>
+<li>Pivot du corps et des pieds pour être en quasi-position de garde</li>
+<li>Frappe de l'autre bras au visage, poing vertical, coude vers le sol</li>
+</ul>
+</li>
+</ol>
+<h1>Défense contre coup de poing de coté (attaque bras intérieur)</h1>
+<h2>Technique</h2>
+<ol start="0">
+<li>
+<ul>
+<li>Départ en position neutre</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Parade du bras le plus proche, avant-bras à la verticale, tranchant de la main à l'extérieur</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Pivot du corps, et léger pas du pied arrière pour être en garde</li>
+<li>Abaissement du bras de l'adversaire avec le bras qui a paré</li>
+<li>Frappe de l'autre bras au visage, poing vertical, coude vers le sol</li>
+</ul>
+</li>
+</ol>
+<h2>Précisions</h2>
+<ul>
+<li>Les deux temps sont séparés pédagogiquement, mais tout se fait dans la continuité</li>
+<li>Ne pas hésiter à abaisser le bras, afin de dégager l'épaule qui protège le visage de l'agresseur</li>
+</ul></div>
+<div id='move-head-etranglement-commando' onclick="toggle('move-body-etranglement-commando');"></div>
+<div id='move-body-etranglement-commando' onclick="toggle('move-body-etranglement-commando');" class='hide'>
+<h1>Défense contre étranglement commando</h1>
+<h2>Technique</h2>
+<ol>
+<li>
+<ul>
+<li>Crochetage de l'avant-bras avec les deux mains</li>
+<li>Tête vers l'intérieur pour préserver la trachée</li>
+<li>Reprise des appuis en se baissant légèrement</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Frappe aux parties avec le plat de la main</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Coup de coude du bras intérieur, au buste ou au visage</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Pivot sur le pied extérieur en passant sous l'aisselle de l'agresseur</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Coup de genou au corps, puis placement de la main avant au coude</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Amenée au sol</li>
+</ul>
+</li>
+</ol>
+<h2>Précisions</h2>
+<ul>
+<li>Timing important, une fois l'étranglement verrouillé, le crochetage ne sert plus à rien</li>
+<li>Crochetage avec mains en becs de canne</li>
+<li>Après les coups de coude, la main revient en position initiale (<strong>doigts vers le haut</strong>)</li>
+<li>Jusqu'au coup de genou, l'avant-bras de l'agresseur doit être plaqué contre le torse pour éviter qu'il ne s'échappe</li>
+</ul>
+<h2>Attaque</h2>
+<ul>
+<li>Étranglement aérien, i.e. avant-bras sur la trachée</li>
+<li>Mouvement court, proche du cou pour éviter d'être détecté</li>
+</ul>
+<h2>Sécurité</h2>
+<ul>
+<li>Attention à la clef d'épaule</li>
+</ul></div>
 <div id='move-head-crochets' onclick="toggle('move-body-crochets');"></div>
 <div id='move-body-crochets' onclick="toggle('move-body-crochets');" class='hide'>
-<h1 id="crochet">Crochet</h1>
-<h2 id="précisions">Précisions</h2>
+<h1>Crochet</h1>
+<h2>Précisions</h2>
 <ul>
 <li>Avant-bras horizontal (<strong>on leve le coude</strong>)</li>
 <li>Poing vertical (<strong>paume vers soi</strong>)</li>
@@ -299,155 +426,108 @@ function rewritetree() {
 <li>Attention à ne pas perdre la garde pendant la rotation</li>
 <li>Rotation du buste avec poids de corps, il ne faut pas se pencher</li>
 </ul>
-<h1 id="paradecontre-sur-crochet">Parade/contre sur crochet</h1>
-<h2 id="technique">Technique</h2>
+<h1>Parade/contre sur crochet</h1>
+<h2>Technique</h2>
 <ul>
 <li>Blocage de l'avant-bras en miroir</li>
 <li>Contre du bras opposé</li>
 </ul>
-<h2 id="precisions">Precisions</h2>
+<h2>Precisions</h2>
 <ul>
 <li>Contre avec le poing vertical, coude tourné vers le sol</li>
 <li>Parade avec sortie du bras a 45⁰ vers l'exterieur, en visant le poignet</li>
-</ul>
-</div>
-<div id='move-head-defense-contre-poing-cote' onclick="toggle('move-body-defense-contre-poing-cote');"></div>
-<div id='move-body-defense-contre-poing-cote' onclick="toggle('move-body-defense-contre-poing-cote');" class='hide'>
-<h1 id="défense-contre-coup-de-poing-de-coté-attaque-bras-extérieur">Défense contre coup de poing de coté (attaque bras extérieur)</h1>
-<h2 id="technique">Technique</h2>
-<ol start="0" style="list-style-type: decimal">
-<li><ul>
-<li>Départ en position neutre</li>
-</ul></li>
-<li><ul>
-<li>Parade du bras le plus proche, avant-bras à la verticale, avec au choix :
-<ul>
-<li>tranchant l'extérieur</li>
-<li>dos de la main à l'extérieur</li>
-<li>pouce à l'extérieur</li>
-</ul></li>
-<li>Pivot du corps et des pieds pour être en quasi-position de garde</li>
-<li>Frappe de l'autre bras au visage, poing vertical, coude vers le sol</li>
-</ul></li>
-</ol>
-<h1 id="défense-contre-coup-de-poing-de-coté-attaque-bras-intérieur">Défense contre coup de poing de coté (attaque bras intérieur)</h1>
-<h2 id="technique-1">Technique</h2>
-<ol start="0" style="list-style-type: decimal">
-<li><ul>
-<li>Départ en position neutre</li>
-</ul></li>
-<li><ul>
-<li>Parade du bras le plus proche, avant-bras à la verticale, tranchant de la main à l'extérieur</li>
-</ul></li>
-<li><ul>
-<li>Pivot du corps, et léger pas du pied arrière pour être en garde</li>
-<li>Abaissement du bras de l'adversaire avec le bras qui a paré</li>
-<li>Frappe de l'autre bras au visage, poing vertical, coude vers le sol</li>
-</ul></li>
-</ol>
-<h2 id="précisions">Précisions</h2>
-<ul>
-<li>Les deux temps sont séparés pédagogiquement, mais tout se fait dans la continuité</li>
-<li>Ne pas hésiter à abaisser le bras, afin de dégager l'épaule qui protège le visage de l'agresseur</li>
-</ul>
-</div>
-<div id='move-head-etranglement-arriere-pousse' onclick="toggle('move-body-etranglement-arriere-pousse');"></div>
-<div id='move-body-etranglement-arriere-pousse' onclick="toggle('move-body-etranglement-arriere-pousse');" class='hide'>
-<h1 id="étranglement-arrière-poussé">Étranglement arrière poussé</h1>
-<h2 id="technique">Technique</h2>
-<ol style="list-style-type: decimal">
-<li><ul>
-<li>Reprise des appuis en avançant un pied et se mettant de profil</li>
-<li>Montée de l'épaule arrière à l'oreille pour avoir un début de clef de poignet</li>
-</ul></li>
-<li><ul>
-<li>Coup de poing marteau dans les flancs de la main arrière</li>
-</ul></li>
-</ol>
-<h2 id="précisions">Précisions</h2>
-<ul>
-<li>Dans le premier temps, attention à ne pas présenter son dos.</li>
-<li>C'est l'épaule qui monte à l'oreille, la tête reste droite</li>
-</ul>
-<h2 id="sécurité">Sécurité</h2>
-<ul>
-<li>Attention à la clef</li>
-</ul>
-</div>
-<div id='move-head-etranglement-commando' onclick="toggle('move-body-etranglement-commando');"></div>
-<div id='move-body-etranglement-commando' onclick="toggle('move-body-etranglement-commando');" class='hide'>
-<h1 id="défense-contre-étranglement-commando">Défense contre étranglement commando</h1>
-<h2 id="technique">Technique</h2>
-<ol style="list-style-type: decimal">
-<li><ul>
-<li>Crochetage de l'avant-bras avec les deux mains</li>
-<li>Tête vers l'intérieur pour préserver la trachée</li>
-<li>Reprise des appuis en se baissant légèrement</li>
-</ul></li>
-<li><ul>
-<li>Frappe aux parties avec le plat de la main</li>
-</ul></li>
-<li><ul>
-<li>Coup de coude du bras intérieur, au buste ou au visage</li>
-</ul></li>
-<li><ul>
-<li>Pivot sur le pied extérieur en passant sous l'aisselle de l'agresseur</li>
-</ul></li>
-<li><ul>
-<li>Coup de genou au corps, puis placement de la main avant au coude</li>
-</ul></li>
-<li><ul>
-<li>Amenée au sol</li>
-</ul></li>
-</ol>
-<h2 id="précisions">Précisions</h2>
-<ul>
-<li>Timing important, une fois l'étranglement verrouillé, le crochetage ne sert plus à rien</li>
-<li>Crochetage avec mains en becs de canne</li>
-<li>Après les coups de coude, la main revient en position initiale (<strong>doigts vers le haut</strong>)</li>
-<li>Jusqu'au coup de genou, l'avant-bras de l'agresseur doit être plaqué contre le torse pour éviter qu'il ne s'échappe</li>
-</ul>
-<h2 id="attaque">Attaque</h2>
-<ul>
-<li>Étranglement aérien, i.e. avant-bras sur la trachée</li>
-<li>Mouvement court, proche du cou pour éviter d'être détecté</li>
-</ul>
-<h2 id="sécurité">Sécurité</h2>
-<ul>
-<li>Attention à la clef d'épaule</li>
-</ul>
-</div>
+</ul></div>
 <div id='move-head-pieds-chasses-glisses' onclick="toggle('move-body-pieds-chasses-glisses');"></div>
 <div id='move-body-pieds-chasses-glisses' onclick="toggle('move-body-pieds-chasses-glisses');" class='hide'>
-<h1 id="coups-de-pieds-chassésglissés">Coups de pieds chassés/glissés</h1>
-<h2 id="techniques">Techniques</h2>
+<h1>Coups de pieds chassés/glissés</h1>
+<h2>Techniques</h2>
 <ul>
-<li>Chassés et glissés:
-<ul>
+<li>Chassés et glissés:<ul>
 <li>direct</li>
 <li>circulaire (frappe avec tibia et en piqué)</li>
 <li>latéral</li>
 <li>circulaire arrière (frappe avec le talon)</li>
-</ul></li>
-<li>Uniquement chassé
-<ul>
-<li>direct arrière</li>
-</ul></li>
 </ul>
-<h2 id="précisions">Précisions</h2>
+</li>
+<li>Uniquement chassé<ul>
+<li>direct arrière</li>
+</ul>
+</li>
+</ul>
+<h2>Précisions</h2>
 <ul>
 <li>Tous les coups de pieds se font de la jambe avant, sans exceptions</li>
 <li>On regarde où on frappe sur le direct arrière</li>
 <li>Travailler le retour en garde pour le chassé, qui se fait en 1 temps</li>
 <li>Pour le chassé le pied arrière part avant, pour le glissé c'est le pied avant</li>
-</ul>
-</div>
+</ul></div>
 </div>
 <div id='entry-verte'>
+<div id='move-head-etranglement-sol-cote' onclick="toggle('move-body-etranglement-sol-cote');"></div>
+<div id='move-body-etranglement-sol-cote' onclick="toggle('move-body-etranglement-sol-cote');" class='hide'>
+<h1>Étranglement au sol (adversaire à coté)</h1>
+<h2>Technique</h2>
+<ol>
+<li>
+<ul>
+<li>Crochetage de la main extérieure</li>
+<li>Pique à la gorge de la main intérieure</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Saisie de la main crochetée à deux mains</li>
+<li>Passage du tibia intérieur sous l'aisselle de l'agresseur</li>
+<li>Amenée de la jambe extérieure devant la tête de l'agresseur (coup de tibia au passage possible)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Enroulage de la jambe autour de la tête et plaquage au sol</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Clef de coude</li>
+</ul>
+</li>
+</ol>
+<h2>Précisions</h2>
+<ul>
+<li>On est au sol, donc les jambes sont pliées</li>
+<li>Le crochetage et la frappe sont <strong>explosifs</strong>, même si on est au sol</li>
+<li>Le coup de poing ou la frappe paume ouverte sont envisageables pour le premier temps, le but est cependant d'ouvrir l'espace sous l'aisselle</li>
+<li>Une fois la main crochetée, il faut tenir le poignet fermement et le plus "haut" possible</li>
+<li>Pendant l'amenée au sol, ne pas se redresser, sinon l'adversaire risque de s'aggriper les main et empêcher la clef</li>
+<li>La clef ne peut fonctionner que si le pouce est dirigé vers le haut (ie. le coude est vers le bas)</li>
+<li>Pour la clef, il faut viser un point d'appui sur le triceps, au rique de perdre en efficacité. Il faut donc rester très proche de son adversaire dès la saisie de son poignet, quitte à se replacer en tirant sur le poignet</li>
+<li>On peut soulever le bassin pour accentuer la clef</li>
+<li>Pour calmer l'agresseur pendant la clef: coup de talon ou mollet au visage</li>
+</ul></div>
+<div id='move-head-parades-poing-glissees' onclick="toggle('move-body-parades-poing-glissees');"></div>
+<div id='move-body-parades-poing-glissees' onclick="toggle('move-body-parades-poing-glissees');" class='hide'>
+<h1>Parades glissées sur coup de poing direct au visage</h1>
+<h2>Technique extérieure:</h2>
+<ul>
+<li>Léger décalage vers l'extérieur</li>
+<li>Contre en miroir au visage, poing vertical, coude vers le bas</li>
+</ul>
+<h2>Technique intérieure:</h2>
+<ul>
+<li>Léger pas vers l'avant</li>
+<li>Abaissement sur les appuis</li>
+<li>Contre en miroir au visage, poing vertical et pouce vers le bas, coude pointé vers le haut et l'extérieur</li>
+</ul>
+<h2>Précisions</h2>
+<ul>
+<li>Bien garder le coude légèrement plié pour dévier l'attaque</li>
+<li>Frappe avec les deux bonnes phalanges</li>
+<li>Ces techniques n'existent que contre une attaque du bras arrière (l'inverse est trop lent)</li>
+</ul></div>
 <div id='move-head-coups-pied-retourne' onclick="toggle('move-body-coups-pied-retourne');"></div>
 <div id='move-body-coups-pied-retourne' onclick="toggle('move-body-coups-pied-retourne');" class='hide'>
-<h1 id="coups-de-pied-retournés">Coups de pied retournés</h1>
-<h2 id="liste">Liste</h2>
+<h1>Coups de pied retournés</h1>
+<h2>Liste</h2>
 <ul>
 <li>Uppercut arrière</li>
 <li>Direct arrière</li>
@@ -455,80 +535,48 @@ function rewritetree() {
 <li>Gifle</li>
 <li>Circulaire arrière (coup porté avec le talon)</li>
 </ul>
-<h2 id="précisions">Précisions</h2>
+<h2>Précisions</h2>
 <ul>
 <li>Rotation du buste, puis de la tête pour perdre l'adversaire de vue le moins longtemps possible</li>
 <li>Chercher la hauteur pour garder l'équilibre</li>
 <li>Regarder où on tape</li>
 <li>Pour la gifle et le circulaire, essayer de raccourcir sa trajectoire</li>
-</ul>
-</div>
+</ul></div>
 <div id='move-head-coups-pieds-extra' onclick="toggle('move-body-coups-pieds-extra');"></div>
 <div id='move-body-coups-pieds-extra' onclick="toggle('move-body-coups-pieds-extra');" class='hide'>
-<h1 id="autres-coups-de-pied">Autres coups de pied</h1>
-<h2 id="liste">Liste</h2>
+<h1>Autres coups de pied</h1>
+<h2>Liste</h2>
 <ul>
 <li>Gifle</li>
 <li>Circulaire arrière</li>
-<li>Spécial corps-à-corps:
-<ol start="0" style="list-style-type: decimal">
-<li><ul>
+<li>Spécial corps-à-corps:<ol start="0">
+<li>
+<ul>
 <li>Position de lutte/cac</li>
-</ul></li>
-<li><ul>
+</ul>
+</li>
+<li>
+<ul>
 <li>Le pied avant prend la place du pied arrière</li>
 <li>Frappe aux parties du pied arrière</li>
-</ul></li>
-</ol></li>
+</ul>
+</li>
+</ol>
+</li>
 <li>Direct sauté en ciseau</li>
 </ul>
-<h2 id="précision">Précision</h2>
+<h2>Précision</h2>
 <ul>
 <li>Les gifles se font en garde (la position neutre sera vue à la bleue)</li>
 <li>La gifle de la jambe arrière vers l'intérieur est omise, car trop longue</li>
 <li>Le circulaire arrière, malgré son nom n'est porté qu'avec la jambe avant, avec l'arrière du talon</li>
 <li>Le circulaire arrière fonctionne à divers niveaux: genou, cuisses, côtes, garde, tête</li>
 <li>Pour le direct sauté en ciseau, penser à aterrir en garde</li>
-</ul>
-</div>
-<div id='move-head-etranglement-sol-cote' onclick="toggle('move-body-etranglement-sol-cote');"></div>
-<div id='move-body-etranglement-sol-cote' onclick="toggle('move-body-etranglement-sol-cote');" class='hide'>
-<h1 id="étranglement-au-sol-adversaire-à-coté">Étranglement au sol (adversaire à coté)</h1>
-<h2 id="technique">Technique</h2>
-<ol style="list-style-type: decimal">
-<li><ul>
-<li>Crochetage de la main extérieure</li>
-<li>Pique à la gorge de la main intérieure</li>
-</ul></li>
-<li><ul>
-<li>Saisie de la main crochetée à deux mains</li>
-<li>Passage du tibia intérieur sous l'aisselle de l'agresseur</li>
-<li>Amenée de la jambe extérieure devant la tête de l'agresseur (coup de tibia au passage possible)</li>
-</ul></li>
-<li><ul>
-<li>Enroulage de la jambe autour de la tête et plaquage au sol</li>
-</ul></li>
-<li><ul>
-<li>Clef de coude</li>
-</ul></li>
-</ol>
-<h2 id="précisions">Précisions</h2>
-<ul>
-<li>On est au sol, donc les jambes sont pliées</li>
-<li>Le crochetage et la frappe sont <strong>explosifs</strong>, même si on est au sol</li>
-<li>Le coup de poing ou la frappe paume ouverte sont envisageables pour le premier temps, le but est cependant d'ouvrir l'espace sous l'aisselle</li>
-<li>Une fois la main crochetée, il faut tenir le poignet fermement et le plus &quot;haut&quot; possible</li>
-<li>Pendant l'amenée au sol, ne pas se redresser, sinon l'adversaire risque de s'aggriper les main et empêcher la clef</li>
-<li>La clef ne peut fonctionner que si le pouce est dirigé vers le haut (ie. le coude est vers le bas)</li>
-<li>Pour la clef, il faut viser un point d'appui sur le triceps, au rique de perdre en efficacité. Il faut donc rester très proche de son adversaire dès la saisie de son poignet, quitte à se replacer en tirant sur le poignet</li>
-<li>On peut soulever le bassin pour accentuer la clef</li>
-<li>Pour calmer l'agresseur pendant la clef: coup de talon ou mollet au visage</li>
-</ul>
-</div>
+</ul></div>
 <div id='move-head-parade-gauche-droite' onclick="toggle('move-body-parade-gauche-droite');"></div>
 <div id='move-body-parade-gauche-droite' onclick="toggle('move-body-parade-gauche-droite');" class='hide'>
-<h1 id="parade-contre-enchainement-gauche-droite">Parade contre enchainement gauche-droite</h1>
-<h2 id="liste">Liste</h2>
+<h1>Parade contre enchainement gauche-droite</h1>
+<h2>Liste</h2>
 <ul>
 <li>Parade intérieure, puis parade intérieure et contre simultané</li>
 <li>Parade intérieure, parade intérieure, puis coup de pied avant direct aux parties</li>
@@ -537,163 +585,143 @@ function rewritetree() {
 <li>Déviation avec l'intérieur du bras avant, déviation avec l'extérieur du bras avant et contre simultané</li>
 <li>Retrait du buste, puis abaissement et contre simultané</li>
 </ul>
-<h2 id="précision">Précision</h2>
+<h2>Précision</h2>
 <ul>
 <li>Tous les contres sont faits du bras arrière</li>
 <li>Tous les contres sont fait poing vertical, sauf pour la première technique où le poing est horizontal</li>
-</ul>
-</div>
-<div id='move-head-parades-poing-glissees' onclick="toggle('move-body-parades-poing-glissees');"></div>
-<div id='move-body-parades-poing-glissees' onclick="toggle('move-body-parades-poing-glissees');" class='hide'>
-<h1 id="parades-glissées-sur-coup-de-poing-direct-au-visage">Parades glissées sur coup de poing direct au visage</h1>
-<h2 id="technique-extérieure">Technique extérieure:</h2>
-<ul>
-<li>Léger décalage vers l'extérieur</li>
-<li>Contre en miroir au visage, poing vertical, coude vers le bas</li>
-</ul>
-<h2 id="technique-intérieure">Technique intérieure:</h2>
-<ul>
-<li>Léger pas vers l'avant</li>
-<li>Abaissement sur les appuis</li>
-<li>Contre en miroir au visage, poing vertical et pouce vers le bas, coude pointé vers le haut et l'extérieur</li>
-</ul>
-<h2 id="précisions">Précisions</h2>
-<ul>
-<li>Bien garder le coude légèrement plié pour dévier l'attaque</li>
-<li>Frappe avec les deux bonnes phalanges</li>
-<li>Ces techniques n'existent que contre une attaque du bras arrière (l'inverse est trop lent)</li>
-</ul>
-</div>
+</ul></div>
 </div>
 <div id='entry-bleue'>
-<div id='move-head-batonbas' onclick="toggle('move-body-batonbas');"></div>
-<div id='move-body-batonbas' onclick="toggle('move-body-batonbas');" class='hide'>
-<h1 id="défense-contre-bâton-bas">Défense contre bâton bas</h1>
-<h2 id="technique">Technique</h2>
-<ol style="list-style-type: decimal">
-<li><ul>
-<li>Glissade pour casser la distance</li>
-<li>Lever du genou en miroir légèrement sur le côté pour bloquer</li>
-</ul></li>
-<li><ul>
-<li>Enchaînement poing avant (du côté du blocage), poing arrière</li>
-</ul></li>
-<li><ul>
-<li>Désarmement si possible</li>
-</ul></li>
-</ol>
-<h2 id="précisions">Précisions</h2>
-<ul>
-<li>La glissade ne doit pas devenir un saut</li>
-<li>On ne se focalise pas sur l'arme</li>
-</ul>
-</div>
 <div id='move-head-couteau-pique-ext-deviee' onclick="toggle('move-body-couteau-pique-ext-deviee');"></div>
 <div id='move-body-couteau-pique-ext-deviee' onclick="toggle('move-body-couteau-pique-ext-deviee');" class='hide'>
-<h1 id="parade-extérieure-déviée-contre-attaque-couteau-en-piqué">Parade extérieure déviée contre attaque couteau en piqué</h1>
-<h2 id="technique">Technique</h2>
-<ol start="0" style="list-style-type: decimal">
-<li><ul>
+<h1>Parade extérieure déviée contre attaque couteau en piqué</h1>
+<h2>Technique</h2>
+<ol start="0">
+<li>
+<ul>
 <li>Départ en position neutre ou garde couteau</li>
-</ul></li>
-<li><ul>
+</ul>
+</li>
+<li>
+<ul>
 <li>Déviation du bras avant, au niveau du poignet</li>
 <li>Léger pas vers l'extérieur avec tai sabaki</li>
 <li>Placage de la main arrière sur la poitrine</li>
-</ul></li>
-<li><ul>
+</ul>
+</li>
+<li>
+<ul>
 <li>Saisie de l'avant-bras avec le bras avant</li>
 <li>Frappes en piston du bras arrière</li>
-</ul></li>
-<li><ul>
+</ul>
+</li>
+<li>
+<ul>
 <li>Saisie de la main armée avec la main arrière</li>
-</ul></li>
-<li><ul>
+</ul>
+</li>
+<li>
+<ul>
 <li>Coup de pied en pas chassé avec la jambe arrière</li>
-</ul></li>
-<li><ul>
+</ul>
+</li>
+<li>
+<ul>
 <li>Épluchage</li>
-</ul></li>
+</ul>
+</li>
 </ol>
-<h2 id="précision">Précision</h2>
+<h2>Précision</h2>
 <ul>
 <li>Si en garde, la jambe avant est celle en miroir du couteau</li>
 <li>Départ de la main avant le corps</li>
 <li>La déviation n'est qu'une rotation du poignet, pas un mouvement du bras</li>
 <li>Pendant le tai sabaki, le pied arrière ne fait pas de pas, il est juste <em>tiré</em> par la rotation du corps</li>
 <li>Garder l'épaule basse pour les pistons</li>
-<li>Après la première frappe, bien verrouiller le bras armé contre la hanche de l'agresseur (penser au &quot;Y&quot;)</li>
+<li>Après la première frappe, bien verrouiller le bras armé contre la hanche de l'agresseur (penser au "Y")</li>
 <li>Rester proche de l'adversaire</li>
-</ul>
-</div>
-<div id='move-head-couteau-pique-ext-glissee' onclick="toggle('move-body-couteau-pique-ext-glissee');"></div>
-<div id='move-body-couteau-pique-ext-glissee' onclick="toggle('move-body-couteau-pique-ext-glissee');" class='hide'>
-<h1 id="parade-extérieure-glissée-contre-attaque-couteau-en-piqué">Parade extérieure glissée contre attaque couteau en piqué</h1>
-<h2 id="technique">Technique</h2>
-<ol start="0" style="list-style-type: decimal">
-<li><ul>
-<li>Départ en position neutre ou garde couteau</li>
-</ul></li>
-<li><ul>
-<li>Parade glissée du bras avant, débutant au poignet</li>
-<li>Léger pas vers l'extérieur avec tai sabaki</li>
-<li>Placage de la main arrière sur la poitrine</li>
-</ul></li>
-<li><ul>
-<li>Saisie de l'avant-bras avec le bras avant</li>
-<li>Frappe en piston du bras arrière</li>
-</ul></li>
-<li><ul>
-<li>Saisie de la main armée avec la main arrière</li>
-</ul></li>
-<li><ul>
-<li>Coup de pied en pas chassé avec la jambe arrière</li>
-</ul></li>
-<li><ul>
-<li>Épluchage</li>
-</ul></li>
-</ol>
-<h2 id="précision">Précision</h2>
+</ul></div>
+<div id='move-head-projections' onclick="toggle('move-body-projections');"></div>
+<div id='move-body-projections' onclick="toggle('move-body-projections');" class='hide'>
+<h1>Projections</h1>
+<h2>Technique</h2>
+<p>(présentée d'un cote, mais à connaitre des deux)</p>
+<ol>
+<li>
 <ul>
-<li>Si en garde, la jambe avant est celle en miroir du couteau</li>
-<li>Départ de la main avant le corps</li>
-<li>Glissade du poignet au deltoïde, en visant l'épaule opposée</li>
-<li>Pendant le tai sabaki, le pied arrière ne fait pas de pas, il est juste <em>tiré</em> par la rotation du corps</li>
-<li>Garder l'épaule basse pour les pistons</li>
-<li>Après la première frappe, bien verrouiller le bras armé contre la hanche de l'agresseur (penser au &quot;Y&quot;)</li>
-<li>Rester proche de l'adversaire</li>
+<li>Saisie du poignet droit avec la main gauche</li>
+<li>Placement du pied droit, perpendiculaire et pointe-à-pointe avec le pied gauche de l'adversaire</li>
 </ul>
-</div>
+</li>
+<li>
+<ul>
+<li>Pivot pour être de dos, hanche collée a l'adversaire</li>
+<li>Saisie <ul>
+<li>de la nuque ou de l'aisselle droite avec le creux du coude droit</li>
+<li>de la ceinture dans le bas du dos, voire de la hanche opposée si possible</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Abaissement du centre de gravité</li>
+<li>Sortie des hanches a droite</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Chargement en remontant sur ses appuis</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Projection en pivotant le buste vers là gauche et en regardant derriere</li>
+</ul>
+</li>
+</ol></div>
 <div id='move-head-couteau-pique-int' onclick="toggle('move-body-couteau-pique-int');"></div>
 <div id='move-body-couteau-pique-int' onclick="toggle('move-body-couteau-pique-int');" class='hide'>
-<h1 id="parade-intérieure-contre-attaque-couteau-en-piqué">Parade intérieure contre attaque couteau en piqué</h1>
-<h2 id="technique">Technique</h2>
-<ol start="0" style="list-style-type: decimal">
-<li><ul>
+<h1>Parade intérieure contre attaque couteau en piqué</h1>
+<h2>Technique</h2>
+<ol start="0">
+<li>
+<ul>
 <li>Départ en position neutre ou garde couteau</li>
-</ul></li>
-<li><ul>
+</ul>
+</li>
+<li>
+<ul>
 <li>Déviation du bras avant, au niveau du poignet</li>
 <li>Léger pas vers l'extérieur avec tai sabaki</li>
 <li>Placage de la main arrière sur la poitrine</li>
-</ul></li>
-<li><ul>
+</ul>
+</li>
+<li>
+<ul>
 <li>Saisie de l'avant-bras avec le bras arrière</li>
 <li>Manchette à la gorge/visage du bras avant</li>
-</ul></li>
-<li><ul>
+</ul>
+</li>
+<li>
+<ul>
 <li>Coup de genou avant (avec potentiel pas chassé)</li>
 <li>Repoussée du bras armé vers l'arrière</li>
-</ul></li>
-<li><ul>
+</ul>
+</li>
+<li>
+<ul>
 <li>Retrait de la jambe avant</li>
 <li>Amenée du bras armé vers l'avant</li>
-</ul></li>
-<li><ul>
+</ul>
+</li>
+<li>
+<ul>
 <li>Épluchage</li>
-</ul></li>
+</ul>
+</li>
 </ol>
-<h2 id="précision">Précision</h2>
+<h2>Précision</h2>
 <ul>
 <li>Si en garde, la jambe avant est celle opposée au couteau</li>
 <li>Départ de la main avant le corps</li>
@@ -701,44 +729,102 @@ function rewritetree() {
 <li>Pendant le tai sabaki, le pied arrière ne fait pas de pas, il est juste <em>tiré</em> par la rotation du corps</li>
 <li>Sur la saisie, on vise le début de l'avant-bras plutot que le poignet, pour éviter d'arriver sur la lame en visant le poignet, en cas de réarmement</li>
 <li>Rester proche de l'adversaire</li>
-</ul>
-</div>
-<div id='move-head-projections' onclick="toggle('move-body-projections');"></div>
-<div id='move-body-projections' onclick="toggle('move-body-projections');" class='hide'>
-<h1 id="projections">Projections</h1>
-<h2 id="technique">Technique</h2>
-<p>(présentée d'un cote, mais à connaitre des deux)</p>
-<ol style="list-style-type: decimal">
-<li><ul>
-<li>Saisie du poignet droit avec la main gauche</li>
-<li>Placement du pied droit, perpendiculaire et pointe-à-pointe avec le pied gauche de l'adversaire</li>
-</ul></li>
-<li><ul>
-<li>Pivot pour être de dos, hanche collée a l'adversaire</li>
-<li>Saisie
+</ul></div>
+<div id='move-head-defenses-circulaire-haut' onclick="toggle('move-body-defenses-circulaire-haut');"></div>
+<div id='move-body-defenses-circulaire-haut' onclick="toggle('move-body-defenses-circulaire-haut');" class='hide'>
+<h1>Défenses contre un coup de pied circulaire milieu/haut</h1>
+<h2>Liste</h2>
 <ul>
-<li>de la nuque ou de l'aisselle droite avec le creux du coude droit</li>
-<li>de la ceinture dans le bas du dos, voire de la hanche opposée si possible</li>
-</ul></li>
-</ul></li>
-<li><ul>
-<li>Abaissement du centre de gravité</li>
-<li>Sortie des hanches a droite</li>
-</ul></li>
-<li><ul>
-<li>Chargement en remontant sur ses appuis</li>
-</ul></li>
-<li><ul>
-<li>Projection en pivotant le buste vers là gauche et en regardant derriere</li>
-</ul></li>
+<li>Direct aux parties de la jambe avant et protection haute en sortant légèrement le bras en miroir et en rentrant la tête</li>
+<li>Blocage des avant-bras, puis enchainement gauche-droite ou droite gauche</li>
+<li>Blocage type baton</li>
+</ul>
+<h2>Précisions</h2>
+<ul>
+<li>Dans le cas du direct aux parties, le bras est le dernier recours, il faut toucher les parties avant la jambe</li>
+<li>Pour le blocage avec les avant-bras:</li>
+<li>Il faut avancer pour casser la distance</li>
+<li>Si attaqué sur le coté extérieur (coté jambe avant), on <strong>peut</strong> faire un pas de la jambe arrière</li>
+<li>contact avec la partie charnue</li>
+<li>un bras de chaque coté du genou</li>
+<li>le premier poing est celui du bras arrière au moment du blocage</li>
+</ul></div>
+<div id='move-head-couteau-pique-ext-glissee' onclick="toggle('move-body-couteau-pique-ext-glissee');"></div>
+<div id='move-body-couteau-pique-ext-glissee' onclick="toggle('move-body-couteau-pique-ext-glissee');" class='hide'>
+<h1>Parade extérieure glissée contre attaque couteau en piqué</h1>
+<h2>Technique</h2>
+<ol start="0">
+<li>
+<ul>
+<li>Départ en position neutre ou garde couteau</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Parade glissée du bras avant, débutant au poignet</li>
+<li>Léger pas vers l'extérieur avec tai sabaki</li>
+<li>Placage de la main arrière sur la poitrine</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Saisie de l'avant-bras avec le bras avant</li>
+<li>Frappe en piston du bras arrière</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Saisie de la main armée avec la main arrière</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Coup de pied en pas chassé avec la jambe arrière</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Épluchage</li>
+</ul>
+</li>
 </ol>
-</div>
-</div>
-<div id='entry-marron'>
-<div id='move-head-coups-pied-sautes' onclick="toggle('move-body-coups-pied-sautes');"></div>
-<div id='move-body-coups-pied-sautes' onclick="toggle('move-body-coups-pied-sautes');" class='hide'>
-<h1 id="coupds-de-pieds-sautés">Coupds de pieds sautés</h1>
-</div>
+<h2>Précision</h2>
+<ul>
+<li>Si en garde, la jambe avant est celle en miroir du couteau</li>
+<li>Départ de la main avant le corps</li>
+<li>Glissade du poignet au deltoïde, en visant l'épaule opposée</li>
+<li>Pendant le tai sabaki, le pied arrière ne fait pas de pas, il est juste <em>tiré</em> par la rotation du corps</li>
+<li>Garder l'épaule basse pour les pistons</li>
+<li>Après la première frappe, bien verrouiller le bras armé contre la hanche de l'agresseur (penser au "Y")</li>
+<li>Rester proche de l'adversaire</li>
+</ul></div>
+<div id='move-head-batonbas' onclick="toggle('move-body-batonbas');"></div>
+<div id='move-body-batonbas' onclick="toggle('move-body-batonbas');" class='hide'>
+<h1>Défense contre bâton bas</h1>
+<h2>Technique</h2>
+<ol>
+<li>
+<ul>
+<li>Glissade pour casser la distance</li>
+<li>Lever du genou en miroir légèrement sur le côté pour bloquer</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Enchaînement poing avant (du côté du blocage), poing arrière</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Désarmement si possible</li>
+</ul>
+</li>
+</ol>
+<h2>Précisions</h2>
+<ul>
+<li>La glissade ne doit pas devenir un saut</li>
+<li>On ne se focalise pas sur l'arme</li>
+</ul></div>
 </div>
 </div>
 <div id="entry-sommaire" class="sommaire">
@@ -746,7 +832,6 @@ function rewritetree() {
 	<h1 id="bouton-orange" onclick='changepage("orange");' 	class="bouton ceinture">orange</h1>
 	<h1 id="bouton-verte" onclick='changepage("verte");' 	class="bouton ceinture">verte</h1>
 	<h1 id="bouton-bleue" onclick='changepage("bleue");' 	class="bouton ceinture">bleue</h1>
-	<h1 id="bouton-marron" onclick='changepage("marron");' 	class="bouton ceinture">marron</h1>
 	<h1 id="bouton-retour" onclick='changepage("sommaire");' 	class="bouton retour">retour</h1>
 </div>
 
